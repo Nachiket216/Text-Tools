@@ -31,14 +31,14 @@ export default function TextForm(props) {
   const [text, setText] = useState("");
   return (
     <>
-      <div className="container"></div>
+      <div className="container my-5"></div>
 
       <div
-        className={`container my-3 text-${
+        className={`container my-4 text-${
           props.mode === "light" ? "dark" : "light"
         }`}
       >
-        <h1>{props.heading}</h1>
+        <h1 className="my-3">{props.heading}</h1>
         <div className="mb-3">
           <textarea
             style={{
@@ -52,16 +52,34 @@ export default function TextForm(props) {
             id="myBox"
           />
         </div>
-        <button className="btn btn-primary mx-2" onClick={handleUpClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleUpClick}
+        >
           Convert to uppercase
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleLoClick}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleLoClick}
+        >
           Convert to Lowercase
         </button>
-        <button className="btn btn-primary mx-2" onClick={handleSentenceCase}>
+        <button
+          disabled={text.length === 0}
+          className="btn btn-primary mx-2 my-1"
+          onClick={handleSentenceCase}
+        >
           Sentence Case
         </button>
-        <button className="btn btn-dark mx-2" onClick={handleClearText}>
+        <button
+          disabled={text.length === 0}
+          className={`btn btn-${
+            props.mode === "light" ? "dark" : "light"
+          } mx-2 my-1 `}
+          onClick={handleClearText}
+        >
           Clear Text
         </button>
       </div>
@@ -73,10 +91,15 @@ export default function TextForm(props) {
       >
         <h1>Your Text Summary</h1>
         <p>
-          {text.split(" ").length - 1} words and {text.length} characters{" "}
+          {
+            text.split(" ").filter((element) => {
+              return element.length !== 0;
+            }).length
+          }{" "}
+          words and {text.length} characters{" "}
         </p>
         <h3>Preview</h3>
-        <p>{text.length>0?text:"Enter Something in the text box above to preview it here"}</p>
+        <p>{text.length > 0 ? text : "Nothing to preview"}</p>
       </div>
     </>
   );

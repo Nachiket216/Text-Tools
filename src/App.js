@@ -20,11 +20,12 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar title="Nachiket" mode={mode} toggleMode={toggleMode} />
+        <Navbar title="Text Tools" mode={mode} toggleMode={toggleMode} />
         <Routes>
-          <Route exact path="/about" element={<About />} />
+          <Route exact path="/about" element={<About mode={mode} />} />
           <Route
-            exact path="/"
+            exact
+            path="/"
             element={
               <TextForm heading="Enter the text to analyse: " mode={mode} />
             }
@@ -33,7 +34,7 @@ function App() {
       </BrowserRouter>
       {/* <Navbar title="Nachiket" mode={mode} toggleMode={toggleMode} />
       {/* <TextForm heading ="Enter the text to analyse" mode={mode}/> */}
-      {/* <About /> */} 
+      {/* <About /> */}
     </>
   );
 }
